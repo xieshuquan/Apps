@@ -50,6 +50,14 @@ namespace Apps.WebApp
                     template: "{controller=Home}/{action=Index}"
                 );
             });
+            using (var scope = app.ApplicationServices.CreateScope())
+            {
+                var dbContexts = scope.ServiceProvider.GetServices<DbContext>();
+                foreach (var dbContext in dbContexts)
+                {
+                    dbContext.Database.EnsureCreated();
+                }
+            }
         }
     }
 }
