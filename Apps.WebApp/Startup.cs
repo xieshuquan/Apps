@@ -28,9 +28,13 @@ namespace Apps.WebApp
             services.AddMvc(options =>
             {
             });
-            services.AddDbContextPool<EntityDbContext>(options =>
+            services.AddDbContextPool<ProfileDbContext>(options =>
             {
-                options.UseMySql(Configuration.GetConnectionString("mysql-dev"));
+                options.UseMySql(Configuration.GetConnectionString("Profile"));
+            });
+            services.AddDbContextPool<ReportDbContext>(options =>
+            {
+                options.UseMySql(Configuration.GetConnectionString("Report"));
             });
         }
 
